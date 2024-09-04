@@ -1,0 +1,93 @@
+{% extends 'basePublico.html' %} {% load static %} {% block content%}
+<div class="container mt-5 mb-5">
+  {% if user.is_authenticated %}
+  <div class="contact__wrapper shadow-lg mt-n9">
+    <div class="row no-gutters">
+      <div
+        class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2"
+      >
+        <h3 class="color--white mb-5">¡Tu reporte puede salvar una vida!</h3>
+        <p>
+          Las emergencias reales requieren atención inmediata. Al reportar una
+          emergencia falsa, estás desviando recursos que podrían ser vitales
+          para alguien en peligro. ¡Por favor, usa los servicios de emergencia
+          con responsabilidad! Cada segundo cuenta, y juntos podemos asegurarnos
+          de que la ayuda llegue a quienes realmente la necesitan.
+        </p>
+      </div>
+
+      <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
+        <form
+          action="/signin/"
+          method="POST"
+          class="contact-form form-validate"
+        >
+          <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          />
+
+          <form>
+            <div class="form-group row">
+              <label for="text1" class="col-4 col-form-label"
+                >Describe la emergencia</label
+              >
+              <div class="col-8">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fa fa-ambulance"></i>
+                    </div>
+                  </div>
+                  <input
+                    id="text1"
+                    name="text1"
+                    placeholder="Ejemplo: Incendio o accidente automovilístico"
+                    type="text"
+                    class="form-control"
+                    required="required"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-4 col-form-label" for="text"
+                >Ubicación registrada</label
+              >
+              <div class="col-8">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fa fa-neuter"></i>
+                    </div>
+                  </div>
+                  <input
+                    id="text"
+                    name="text"
+                    type="text"
+                    class="form-control"
+                    required="required"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-4 col-8">
+                <button name="submit" type="submit" class="btn btn-danger">
+                  Reportar ahora
+                </button>
+              </div>
+            </div>
+          </form>
+        </form>
+      </div>
+      <!-- End Contact Form Wrapper -->
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock content %}

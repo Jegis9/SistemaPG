@@ -48,7 +48,7 @@
       <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1 mt-5">
         <form method="POST" class="contact-form form-validate">
           <h1 class="text-center">Crear cuenta</h1>
-          {% csrf_token %} {{form.as_p}}
+          {% csrf_token %} {{ form }}
 
           <input class="btn btn-success" type="submit" value="Register" />
         </form>
