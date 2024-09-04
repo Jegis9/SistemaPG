@@ -3,10 +3,20 @@ from . import views
 
 
 urlpatterns = [
+# rutas de modulos para navegacion
     path('', views.home, name='home'),
+    path('usuarios/', views.usuarios, name='usuarios'),
+    # path('insumos/', views.insumos, name='insumos'),
+    
+    
+    
+    
+    
+    # rutas de opciones insumos
     path('registrarInsumo/', views.registrarInsumo),
     path('edicionInsumo/<codigo>', views.edicionInsumo),
     path('editarInsumo/', views.editarInsumo),
     path('eliminacionInsumo/<codigo>', views.eliminacionInsumo),
     
+
 ]
