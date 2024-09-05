@@ -80,49 +80,4 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div
-  class="modal fade border"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h1
-          class="modal-title fs-5 text-center text-light w-100"
-          id="exampleModalLabel"
-        >
-          Nuevo usuario
-        </h1>
-        <button
-          type="button"
-          class="btn-close bg-white"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-
-      <div class="modal-body">
-        <div class="container px-5 my-5">
-          <form id="contactForm" action="/registrarInsumo/" method="post">
-            {% csrf_token %} {{ form }}
-            <div class="d-grid">
-              <button
-                class="btn btn-primary btn-lg"
-                id="submitButton"
-                type="submit"
-              >
-                Guardar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 {% endblock %}

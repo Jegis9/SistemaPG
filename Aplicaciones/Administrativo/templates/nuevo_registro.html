@@ -1,0 +1,16 @@
+{% extends "./base.html" %} {% load static %} {% block body %}
+
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <div>
+      <h1 class="text-center">Editar Insumo</h1>
+    </div>
+    <form method="POST" class="contact-form form-validate">
+      <h1 class="text-center">Crear cuenta</h1>
+      {% csrf_token %} {{formulario}}
+      <input class="btn btn-success" type="submit" value="Registrar" />
+    </form>
+  </div>
+</div>
+
+{% endblock %}
