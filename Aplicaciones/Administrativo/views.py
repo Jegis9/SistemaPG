@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Insumos, InsumoLog
 from django.contrib.auth.decorators import login_required #importa libreria para hacer de la pagina requerido el login para poder verla
 from django.contrib.auth.models import User
+
+
+
 # Create your views here.
 
 def home(request):
@@ -16,7 +19,7 @@ def usuarios(request):
 # def insumos(request):
 #     return render(request, 'insumos.html')
 
-@login_required
+
 def registrarInsumo(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,7 +52,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
+
+
+
 
 ROOT_URLCONF = 'Sistema.urls'
 
@@ -117,9 +122,9 @@ STATIC_URL = 'static/'
 
 
 #Cuando el usuario se autentique lo redigira a home (provisional hasta ahora)
-LOGIN_REDIRECT_URL = 'home'
+# LOGIN_REDIRECT_URL = 'home'
 # Redirigira al usuario a login cuando desee ingresar a una seccion donde debe de estar autenticado
-LOGIN_URL = 'login'
+LOGIN_URL = '/login/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
