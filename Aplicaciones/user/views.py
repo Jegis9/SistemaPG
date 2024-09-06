@@ -21,6 +21,8 @@ def logout(request):
     return render(request, 'logout.html')
 
 
+
+
 # # crear formulario generado por django para registro de usuarios 
 def register(request):
     if request.method == 'POST':# si el metodo es POST (recibe datos)

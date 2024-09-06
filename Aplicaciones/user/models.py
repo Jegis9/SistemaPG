@@ -16,7 +16,7 @@ class Profile(models.Model):
                                                      # si el usuario no es interno lo dirigira a la pagina de emergencias
                                                      # si el susuario es interno lo digiriga a la pagina de administracion
 
-
+    image = models.ImageField(default='avatar.jpg', upload_to='Profile_images')
 # cuando el usuario es creado en esta parte se asegura que el perfil es creado con su respectivo perfil
 @receiver(post_save, sender=User) # primero se crea el perfil segun el usuario 
 def create_user_profile(sender, instance, created, **kwargs):

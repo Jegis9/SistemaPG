@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_ROOT = (BASE_DIR/ 'media')
 
 #Cuando el usuario se autentique lo redigira a home (provisional hasta ahora)
 # LOGIN_REDIRECT_URL = 'home'
