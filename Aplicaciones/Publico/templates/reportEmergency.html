@@ -17,8 +17,15 @@
       </div>
 
       <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
-        <form method="POST" class="contact-form form-validate">
-          <h1 class="text-center">Iniciar sesion</h1>
+        <form
+          method="POST"
+          class="contact-form form-validate"
+          id="emergencyForm"
+          action="/reportarEmergencia/"
+        >
+          {% csrf_token %}
+
+          <h1 class="text-center">Iniciar sesión</h1>
 
           <div class="alert alert-danger" role="alert">
             <strong>Advertencia: </strong> Utiliza este reporte solamente si la
@@ -28,35 +35,48 @@
           <div class="row">
             <div class="col-sm-6 mb-3">
               <div class="form-group">
-                <label for="username">Descripcion de emergencia: </label>
+                <label for="descripcion">Descripción de emergencia: </label>
                 <input
                   type="text"
-                  name="username"
-                  id="username"
+                  name="descripcion"
+                  id="descripcion"
                   class="form-control"
-                  placeholder="escribe tu usuario"
+                  placeholder="Ej. Accidente automovilistico "
                 />
               </div>
             </div>
 
             <div class="col-sm-6 mb-3">
               <div class="form-group">
-                <label for="password">Ubicacion: </label>
                 <input
-                  type="password"
-                  name="password"
-                  id="password"
+                  type="hidden"
+                  name="location"
+                  id="location"
                   class="form-control"
-                  placeholder="escribe tu contraseña"
+                  placeholder="Ubicación detectada automáticamente"
+                  readonly
                 />
               </div>
             </div>
           </div>
 
+          <!-- Div donde se mostrará el mapa -->
+          <h1 class="text-center">Ubicacion</h1>
+          {% if messages %} {% for message in messages %}
+          <div class="alert alert-success" role="alert">
+            <strong>Exito: </strong> Hemos recibido tu reporte llegaremos lo mas
+            rapido posible
+          </div>
+          {% endfor %} {% endif %}
+
+          <div id="map" style="height: 400px; width: 100%"></div>
+
           <input
             class="btn btn-danger"
             type="submit"
             value="Reportar emergencia"
+            id="report"
+            name="report"
           />
         </form>
       </div>

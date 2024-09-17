@@ -48,7 +48,6 @@ def eliminacionInsumo(request, codigo):
 
 
 
-
 @login_required
 def edicionInsumo(request, codigo):
     insumo = Insumos.objects.get(codigo=codigo)
@@ -87,11 +86,7 @@ def editarInsumo(request):
         
 
 
-# views.py
-from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from .forms import CustomCreateUserForm
-from Aplicaciones.user.models import Profile  # Importa el perfil
+
 
 def nuevo_registro(request):
     if request.method == 'POST':# si el metodo es POST (recibe datos)

@@ -5,9 +5,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('reportEmergency/', views.reportEmergency, name='reportEmergency'),
-
-    path('profile/', views.profile, name='profile' )
-]+ static( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #url para aceptar imagenes 
+    path('reportarEmergencia/', views.reportarEmergencia, name='reportarEmergencia'),
+    path('profile/', views.profile, name='profile' ) # ruta para llamar a la vista profile o perfil z
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 
 
 

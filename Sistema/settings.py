@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Aplicaciones.Administrativo',
     'Aplicaciones.user',
-    'Aplicaciones.Publico'
+    'Aplicaciones.Publico',
+    'Aplicaciones.emergenciasRecibidas'
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_ROOT = (BASE_DIR/ 'media')
+# Archivos multimedia
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 #Cuando el usuario se autentique lo redigira a home (provisional hasta ahora)
 # LOGIN_REDIRECT_URL = 'home'
