@@ -44,7 +44,15 @@
       <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1 mt-5">
         <form method="POST" class="contact-form form-validate">
           <h1 class="text-center">Crear cuenta</h1>
-          {% csrf_token %}
+          {% if form.errors %}
+
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>Mensaje: </strong> {{ form.errors }}
+          </div>
+          {% endif %} {% csrf_token %}
 
           <div class="row">
             <div class="col-sm-6 mb-3">

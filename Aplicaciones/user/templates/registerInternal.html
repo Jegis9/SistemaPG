@@ -1,0 +1,223 @@
+{% extends "baseG.html" %} {% load static %} {% block body %}
+<div class="row justify-content-center">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 form-container">
+      <h1 class="text-center">Crear cuenta</h1>
+      <form method="POST" class="contact-form form-validate">
+        {% if formulario.errors %}
+
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Mensaje: </strong> {{ formulario.errors }}
+        </div>
+        {% endif %} {% if messages %} {% for message in messages %}
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Mensaje: </strong> {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %} {% endif %} {% csrf_token %}
+
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="username">Nombre de usuario:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                class="form-control"
+                placeholder="Escribe tu usuario"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="password1">Contraseña: </label>
+              <input
+                type="password"
+                name="password1"
+                id="password1"
+                class="form-control"
+                placeholder="Escribe tu contraseña"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="password2">Repite tu contraseña: </label>
+              <input
+                type="password"
+                name="password2"
+                id="password2"
+                class="form-control"
+                placeholder="Repite tu contraseña"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="email">Correo electronico: </label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="example@gmail.com"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="pdi">Número de dpi: </label>
+              <input
+                type="pdi"
+                class="form-control"
+                id="pdi"
+                name="pdi"
+                placeholder="12311234564"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="name1">Primer nombre: </label>
+              <input
+                type="name1"
+                class="form-control"
+                id="name1"
+                name="name1"
+                placeholder="Ej: Josue"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="name2">Segundo nombre: </label>
+              <input
+                type="name2"
+                class="form-control"
+                id="name2"
+                name="name2"
+                placeholder="Ej: Luis"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="lastname1">Primer apellido: </label>
+              <input
+                type="lastname1"
+                class="form-control"
+                id="lastname1"
+                name="lastname1"
+                placeholder="Ej: Gomez"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="lastname2">Segundo apellido: </label>
+              <input
+                type="lastname2"
+                class="form-control"
+                id="lastname2"
+                name="lastname2"
+                placeholder="Ej: Gutierrez"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="brithday">Cuimpleaños </label>
+              <input
+                type="date"
+                class="form-control"
+                id="brithday"
+                name="brithday"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="phone">Número de celular: </label>
+              <input
+                type="phone"
+                class="form-control"
+                id="phone"
+                name="phone"
+                placeholder="4543-5453"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="municipio">Municipio: </label>
+              <input
+                type="municipio"
+                class="form-control"
+                id="municipio"
+                name="municipio"
+                placeholder="Ej: Totonicapan"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="direccion">Direccion: </label>
+              <input
+                type="direccion"
+                class="form-control"
+                id="direccion"
+                name="direccion"
+                placeholder="Ej: Zona 2 de totonicapan 10ma avenida y 5ta calle "
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="gender">Género</label>
+              {% for radio in formulario.gender %}
+              <div class="form-check">
+                {{ radio.tag }}
+                <!-- Renderiza el input de tipo radio -->
+                {{ radio.choice_label }}
+                <!-- Renderiza la etiqueta del radio -->
+              </div>
+              {% endfor %} {% if formulario.gender.errors %}
+              <div class="text-danger">{{ formulario.gender.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <input
+            class="btn btn-success w-100"
+            type="submit"
+            value="Registrar"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

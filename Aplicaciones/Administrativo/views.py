@@ -88,21 +88,3 @@ def editarInsumo(request):
 
 
 
-def nuevo_registro(request):
-    if request.method == 'POST':# si el metodo es POST (recibe datos)
-        form = CreateUserForm(request.POST)#entonces que cree o reciba los parametros de post
-        if form.is_valid():# si estos son validos entonces
-            user = form.save()# los guarda
-            # aqui se manda a llamar al modelo de perfil con su campo relacionado de usuario que se creara
-            profile = user.profile
-            profile.is_internal = form.cleaned_data.get('is_internal', True) # aqui se define si el perfil del usuario es true o false, debido a que es un usuario externo se dejara en False
-            profile.save() # aqui se guarda el perfil del usuario relacionado con el campo is_internal como False
-            messages.success(request, 'Nuevo usuario agregado correctamente')
-            
-    else:
-        form = CreateUserForm() # si el formulario no es POST (envio de datos) y es GET (carga la pagina)
-
-
-    context = {'formulario': form}
-    return render(request, 'nuevo_registro.html', context)
-
