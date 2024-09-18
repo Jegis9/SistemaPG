@@ -125,3 +125,24 @@ tr:last-child td:last-child {
 .card4 {
   border-radius: 8px;
 }
+
+/* estilos para el formulario de crear cuenta interna */
+.form-container {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-top: 50px;
+}
+.form-container h1 {
+  color: #28a745;
+  margin-bottom: 30px;
+}
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}

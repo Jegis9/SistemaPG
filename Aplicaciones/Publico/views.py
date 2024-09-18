@@ -41,3 +41,4 @@ def reportarEmergencia(request):
     else:
         messages.error(request, 'Hubo un error en el reporte, intenta de nuevo')
         return redirect('reportEmergency')
+
