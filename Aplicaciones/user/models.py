@@ -7,7 +7,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-
 # aqui se manejan los diferentes perfiles que tendra el usuario para poder redirigirlo a cierta pagina segun tenga su perfil relacionado con el usuario
 
 class Profile(models.Model):

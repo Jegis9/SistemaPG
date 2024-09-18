@@ -63,9 +63,17 @@
           <!-- Div donde se mostrará el mapa -->
           <h1 class="text-center">Ubicacion</h1>
           {% if messages %} {% for message in messages %}
-          <div class="alert alert-success" role="alert">
-            <strong>Exito: </strong> Hemos recibido tu reporte llegaremos lo mas
-            rapido posible
+          <div
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>Mensaje: </strong> {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
           </div>
           {% endfor %} {% endif %}
 

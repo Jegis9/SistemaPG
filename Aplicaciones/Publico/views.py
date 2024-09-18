@@ -27,12 +27,16 @@ def reportarEmergencia(request):
     if request.method == 'POST':
         descripcion = request.POST.get('descripcion')
         ubicacion = request.POST.get('location')
-        Emergencias.objects.create(descripcion=descripcion, ubicacion=ubicacion)
         
+        # Crea una emergencia asociada al usuario logueado
+        Emergencias.objects.create(
+            user=request.user,  # Asociar la emergencia al usuario que hizo el reporte
+            descripcion=descripcion,
+            ubicacion=ubicacion
+        )
         
-        messages.success(request, ' Reporte agregado')
+        messages.success(request, 'Reporte agregado correctamente')
         return redirect('reportEmergency')
-    
     
     else:
         messages.error(request, 'Hubo un error en el reporte, intenta de nuevo')
