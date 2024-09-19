@@ -21,6 +21,10 @@
     <!-- Styles CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'css/sweetalert2.all.min.css' %}" />
+    <!-- Icono -->
+    <link rel="shortcut icon" href="{% static 'img/icon.ico' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/stylesPublico.css' %}" />
     <style>
       button {
         padding: 0.25rem 1rem !important;
@@ -206,20 +210,43 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  {% if user.profile.image %}
                   <img
-                    src="https://github.com/mdo.png"
-                    alt="hugenerd"
+                    src="{{ user.profile.image.url }}"
+                    class="img-radius rounded-circle"
+                    alt="User-Profile-Image"
                     width="28"
                     height="28"
                     class="rounded-circle"
                   />
+                  {% else %}
+
+                  <img
+                    class="img-radius rounded-circle"
+                    src="/media/avatar.jpg"
+                    alt="Imagen predeterminada"
+                    width="28"
+                    height="28"
+                  />
+
+                  {% endif %}
+
                   <span class="d-none d-sm-inline mx-1">Admin</span>
                 </a>
                 <ul
                   class="dropdown-menu dropdown-menu text-small shadow"
                   aria-labelledby="dropdownUser1"
                 >
-                  <li><a class="dropdown-item" href="/logout">Salir</a></li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'logout' %}"
+                      >Cerrar sesion</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'profile_Interno' %}"
+                      >Perfil</a
+                    >
+                  </li>
                 </ul>
               </div>
             </div>

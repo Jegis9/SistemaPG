@@ -22,6 +22,8 @@ def profile(request):
         form = ProfileForm(instance=request.user.profile) # si no es post (get) mostrara el formulario que se desea visualizar
     return render(request, 'profile.html', {'form': form})
 
+def profile_Interno(request):
+    return render(request,'profileInterno.html')
 
 def reportarEmergencia(request):
     if request.method == 'POST':
