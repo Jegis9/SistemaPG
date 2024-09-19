@@ -80,17 +80,62 @@ $(document).ready(function () {
         exportOptions: {
           columns: ":not(:last-child)", // Excluye la última columna (opciones)
         },
+        customize: function (xlsx) {
+          var sheet = xlsx.xl.worksheets["sheet1.xml"];
+          $('row c[r^="A"]', sheet).attr("s", "2");
+          $("row:first c", sheet).attr("s", "27");
+        },
       },
       {
         extend: "pdf",
         exportOptions: {
           columns: ":not(:last-child)", // Excluye la última columna (opciones)
         },
+        customize: function (doc) {
+          // Cambiar el título
+          doc.content[0].text = "Reporte";
+
+          doc.content[1].table.widths = Array(
+            doc.content[1].table.body[0].length + 1
+          )
+            .join("*")
+            .split("");
+          doc.defaultStyle.alignment = "center";
+          doc.styles.tableHeader = {
+            color: "white",
+
+            alignment: "center",
+            fontSize: 12,
+            bold: true,
+          };
+          doc.content[0].alignment = "center";
+          doc.content[0].fontSize = 16;
+          doc.content[0].bold = true;
+        },
       },
       {
         extend: "print",
         exportOptions: {
           columns: ":not(:last-child)", // Excluye la última columna (opciones)
+        },
+        customize: function (win) {
+          $(win.document.body).css("font-size", "10pt");
+          $(win.document.body)
+            .find("table")
+            .addClass("compact")
+            .css("font-size", "inherit");
+
+          // Cambiar el título
+          $(win.document.body)
+            .find("h1")
+            .text("Reporte")
+            .css("text-align", "center")
+            .css("font-size", "18pt");
+
+          $(win.document.body)
+            .find("thead")
+            .css("background-color", "#2196F3")
+            .css("color", "white");
         },
       },
     ],

@@ -129,46 +129,7 @@
                     ><span class="ms-1 d-none d-sm-inline">Insumos</span></a
                   >
                 </li>
-                <li class="dropdown">
-                  <a
-                    href="#"
-                    class="nav-link dropdown-toggle px-sm-0 px-1"
-                    id="dropdown"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="bi bi-clipboard-minus"></i
-                    ><span class="ms-1 d-none d-sm-inline">Servicios</span>
-                  </a>
-                  <ul
-                    class="dropdown-menu dropdown-menu text-small shadow"
-                    aria-labelledby="dropdown"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="/servicios_varios"
-                        >Varios</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/servicios_ambulancia"
-                        >Ambulancia</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/incendios_estructurales"
-                        >Incendios Estructurales</a
-                      >
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/control_vehiculos"
-                        >Control de vehiculos</a
-                      >
-                    </li>
-                  </ul>
-                </li>
+
                 <li>
                   <a href="/vehiculos" class="nav-link px-sm-0 px-2">
                     <i class="bi bi-truck"></i
@@ -181,23 +142,33 @@
                     ><span class="ms-1 d-none d-sm-inline">EPP</span>
                   </a>
                 </li>
-                <li>
-                  <a href="/herramientas" class="nav-link px-sm-0 px-2">
-                    <i class="bi bi-gear"></i
-                    ><span class="ms-1 d-none d-sm-inline">Herramientas</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/personalesEstacion" class="nav-link px-sm-0 px-2">
-                    <i class="fs-5 bi-people"></i
-                    ><span class="ms-1 d-none d-sm-inline">Personal</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="{% url 'usuarios'%}" class="nav-link px-sm-0 px-2">
-                    <i class="fs-5 bi-people"></i
+
+                <li class="dropdown">
+                  <a
+                    href="#"
+                    class="nav-link dropdown-toggle px-sm-0 px-1"
+                    id="dropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-clipboard-minus"></i
                     ><span class="ms-1 d-none d-sm-inline">Usuarios</span>
                   </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu text-small shadow"
+                    aria-labelledby="dropdown"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="{% url 'lInternos' %}"
+                        >Internos</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'lUsuarios' %}"
+                        >Publicos</a
+                      >
+                    </li>
+                  </ul>
                 </li>
               </ul>
               <div
