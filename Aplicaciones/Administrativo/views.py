@@ -17,11 +17,6 @@ def home(request):
     insumosList = Insumos.objects.all()
     return render(request, "insumos.html", {"insumos": insumosList})
 
-def usuarios(request):
-    # Obtenemos la lista de todos los usuarios registrados
-    users = User.objects.all()
-    return render(request, 'usuarios.html', {"object_list": users})
-
 
 def registrarInsumo(request):
     if request.method == 'POST':
@@ -35,7 +30,7 @@ def registrarInsumo(request):
     else:
         return redirect('/')
     
-
+ 
 @login_required
 def eliminacionInsumo(request, codigo):
     insumo = Insumos.objects.get(codigo=codigo)

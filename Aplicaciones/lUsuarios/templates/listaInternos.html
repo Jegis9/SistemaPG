@@ -1,0 +1,85 @@
+{% extends "baseG.html" %} {% load static %} {% block body %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center text-success">
+        Control de usuarios internos
+        <i class="bi bi-calendar-plus-fill text-success"></i>
+      </h1>
+    </div>
+
+    <div class="col-12 d-flex flex-column align-items-center">
+      <button type="button" class="btn btn-primary mb-2 rounded-pill">
+        <a href="{% url 'registro_interno' %}" class="text-light"
+          >Nuevo registro</a
+        >
+        <img src="{% static 'svg/plus.svg' %}" class="svgButtons" />
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="row mt-4 shadow p-3 mb-5 bg-body-tertiary rounded border border-secondary"
+  >
+    {% if object_list %}
+    <div class="table-responsive">
+      <table
+        id="myTable"
+        class="table table-striped table-bordered border-success"
+      >
+        <thead>
+          <tr>
+            <th class="header-cell">#</th>
+            <th class="header-cell w-5">Nombre de usuario</th>
+            <th class="header-cell w-5 border">Nombre</th>
+            <th class="header-cell w-5 border">Apellidos</th>
+            <th class="header-cell w-5 border">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in object_list %}
+          <tr>
+            <td class="border border-success">{{ user.id }}</td>
+            <td class="border border-success">{{ user.username }}</td>
+            <td class="border border-success">{{ user.lastname }}</td>
+            <td class="border border-success">{{ user.name }}</td>
+
+            <td class="border border-success">
+              <div
+                class="d-flex flex-column flex-md-row justify-content-between"
+              >
+                <button
+                  class="btn btn-danger mb-2 mb-md-0"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ModalEliminar"
+                >
+                  <a
+                    href="eliminacionInsumo/{{ insumo.codigo }}"
+                    class="text-light"
+                    >Desactivar</a
+                  >
+                </button>
+                <button class="bg-warning">
+                  <a href="edicionInsumo/{{ insumo.codigo }}" class="text-black"
+                    >Editar</a
+                  >
+                </button>
+                <button class="bg-success">
+                  <a href="edicionInsumo/{{ insumo.codigo }}" class="text-black"
+                    >Datos</a
+                  >
+                </button>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
