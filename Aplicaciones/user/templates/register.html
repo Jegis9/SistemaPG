@@ -44,15 +44,28 @@
       <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1 mt-5">
         <form method="POST" class="contact-form form-validate">
           <h1 class="text-center">Crear cuenta</h1>
-          {% if form.errors %}
+          {% if formulario.errors %}
 
           <div
             class="alert alert-danger alert-dismissible fade show"
             role="alert"
           >
-            <strong>Mensaje: </strong> {{ form.errors }}
+            <strong>Mensaje: </strong> {{ formulario.errors }}
           </div>
-          {% endif %} {% csrf_token %}
+          {% endif %} {% if messages %} {% for message in messages %}
+          <div
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>Mensaje: </strong> {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          {% endfor %} {% endif %} {% csrf_token %}
 
           <div class="row">
             <div class="col-sm-6 mb-3">
@@ -170,12 +183,12 @@
 
             <div class="col-sm-6 mb-3">
               <div class="form-group">
-                <label for="brithday">Cuimpleaños </label>
+                <label for="birthday">Cuimpleaños </label>
                 <input
                   type="date"
                   class="form-control"
-                  id="brithday"
-                  name="brithday"
+                  id="birthday"
+                  name="birthday"
                 />
               </div>
             </div>

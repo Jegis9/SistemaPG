@@ -7,6 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
+from .models import Profile
 # Create your views here.
 
 # crear vista para que redirija a index que es la pagina principal
@@ -25,24 +26,77 @@ def logout(request):
 
 # # crear formulario generado por django para registro de usuarios 
 def register(request):
-    if request.method == 'POST':# si el metodo es POST (recibe datos)
-        form = CreateUserForm(request.POST)#entonces que cree o reciba los parametros de post
-        if form.is_valid():# si estos son validos entonces
-            user = form.save()# los guarda
-            # aqui se manda a llamar al modelo de perfil con su campo relacionado de usuario que se creara
-            profile = user.profile
-            profile.is_internal = form.cleaned_data.get('is_internal', False) # aqui se define si el perfil del usuario es true o false, debido a que es un usuario externo se dejara en False
-            profile.save() # aqui se guarda el perfil del usuario relacionado con el campo is_internal como False
-            login(request, user) # aqui se loguea con los datos si todo es correcto
-            if profile.is_internal: # verifica si el perfil del usuario que inicia el login es interno is_internal entonces lo redirige a home (en este caaso falso)
-                return redirect('home')
-            else: # de lo contrario, si el usuario en la variable is_internal es falso entonces que lo redirija a reporEmergency que estara disposible para personas externas a la estacion
-                return redirect('reportEmergency')
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            try:
+                profile = user.profile
+            except Profile.DoesNotExist:
+                profile = Profile(user=user)
+            
+            profile.is_internal = False
+            profile.pdi = form.cleaned_data.get('pdi')
+            profile.name1 = form.cleaned_data['name1']
+            profile.name2 = form.cleaned_data.get('name2', '')
+            profile.lastname1 = form.cleaned_data['lastname1']
+            profile.lastname2 = form.cleaned_data.get('lastname2', '')
+            profile.birthday = form.cleaned_data['birthday']  # Fixed spelling
+            profile.phone = form.cleaned_data.get('phone', '')
+            profile.municipio = form.cleaned_data.get('municipio', '')
+            profile.direccion = form.cleaned_data.get('direccion', '')
+            profile.gender = form.cleaned_data['gender']
+            profile.save()
+            
+            messages.success(request, 'Nuevo usuario agregado correctamente')
+        else:
+            print("Errores del formulario:", form.errors)
+            print("Datos recibidos:", request.POST)
     else:
-        form = CreateUserForm() # si el formulario no es POST (envio de datos) y es GET (carga la pagina)
+        form = CreateUserForm()
     
-    context = {'form': form} # entonces mostrara el formulario para poder registrarse 
+    context = {'form': form}
     return render(request, 'register.html', context)
+
+def nuevo_registro(request):
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            try:
+                profile = user.profile
+            except Profile.DoesNotExist:
+                profile = Profile(user=user)
+            
+            profile.is_internal = True
+            profile.pdi = form.cleaned_data.get('pdi')
+            profile.name1 = form.cleaned_data['name1']
+            profile.name2 = form.cleaned_data.get('name2', '')
+            profile.lastname1 = form.cleaned_data['lastname1']
+            profile.lastname2 = form.cleaned_data.get('lastname2', '')
+            profile.birthday = form.cleaned_data['birthday']  # Fixed spelling
+            profile.phone = form.cleaned_data.get('phone', '')
+            profile.municipio = form.cleaned_data.get('municipio', '')
+            profile.direccion = form.cleaned_data.get('direccion', '')
+            profile.gender = form.cleaned_data['gender']
+            profile.save()
+            
+            messages.success(request, 'Nuevo usuario agregado correctamente')
+        else:
+            print("Errores del formulario:", form.errors)
+            print("Datos recibidos:", request.POST)
+    else:
+        form = CreateUserForm()
+    
+    context = {'formulario': form}
+    return render(request, 'registerInternal.html', context)
+
+
+
+
+
+
+
 
 class CustomLoginView(View):    # creamos esta nueva vista para modificar el formulario de login por defecto de django
     def get(self, request): 
@@ -67,25 +121,7 @@ class CustomLoginView(View):    # creamos esta nueva vista para modificar el for
 
 
 
-def nuevo_registro(request):
-    if request.method == 'POST':# si el metodo es POST (recibe datos)
-        form = CreateUserForm(request.POST)#entonces que cree o reciba los parametros de post
-        if form.is_valid():# si estos son validos entonces
-            user = form.save()# los guarda
-            # aqui se manda a llamar al modelo de perfil con su campo relacionado de usuario que se creara
-            profile = user.profile
-            profile.is_internal = True # aqui se define si el perfil del usuario es true o false, debido a que es un usuario externo se dejara en False
-            profile.save() # aqui se guarda el perfil del usuario relacionado con el campo is_internal como False
-            messages.success(request, 'Nuevo usuario agregado correctamente')
-        else:
-            print(form.errors)
-            
-    else:
-        form = CreateUserForm() # si el formulario no es POST (envio de datos) y es GET (carga la pagina)
 
-
-    context = {'formulario': form}
-    return render(request, 'registerInternal.html', context)
 
 
 

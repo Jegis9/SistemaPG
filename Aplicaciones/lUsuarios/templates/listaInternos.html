@@ -31,8 +31,16 @@
           <tr>
             <th class="header-cell">#</th>
             <th class="header-cell w-5">Nombre de usuario</th>
-            <th class="header-cell w-5 border">Nombre</th>
-            <th class="header-cell w-5 border">Apellidos</th>
+            <th class="header-cell w-5 border">1er Nombre</th>
+            <th class="header-cell w-5 border">2do Nombre</th>
+            <th class="header-cell w-5 border">1er Apellido</th>
+            <th class="header-cell w-5 border">2do Apellido</th>
+            <th class="header-cell w-5 border">dpi</th>
+            <th class="header-cell w-5 border">Fecha de nac</th>
+            <th class="header-cell w-5 border">Direccion</th>
+            <th class="header-cell w-5 border">Genero</th>
+            <th class="header-cell w-5 border">Municipio</th>
+            <th class="header-cell w-5 border">Telefono</th>
             <th class="header-cell w-5 border">Opciones</th>
           </tr>
         </thead>
@@ -41,8 +49,16 @@
           <tr>
             <td class="border border-success">{{ user.id }}</td>
             <td class="border border-success">{{ user.username }}</td>
-            <td class="border border-success">{{ user.lastname }}</td>
-            <td class="border border-success">{{ user.name }}</td>
+            <td class="border border-success">{{ user.profile.name1 }}</td>
+            <td class="border border-success">{{ user.profile.name2}}</td>
+            <td class="border border-success">{{ user.profile.lastname1 }}</td>
+            <td class="border border-success">{{ user.profile.lastname2 }}</td>
+            <td class="border border-success">{{ user.profile.pdi }}</td>
+            <td class="border border-success">{{ user.profile.birthday}}</td>
+            <td class="border border-success">{{ user.profile.direccion }}</td>
+            <td class="border border-success">{{ user.profile.gender }}</td>
+            <td class="border border-success">{{ user.profile.municipio }}</td>
+            <td class="border border-success">{{ user.profile.phone }}</td>
 
             <td class="border border-success">
               <div
