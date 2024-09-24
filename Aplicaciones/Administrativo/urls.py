@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
 # rutas de modulos para navegacion
-    path('', views.home, name='home'),
+    path('home/', views.home, name='home'),
 
     # path('insumos/', views.insumos, name='insumos'),
 

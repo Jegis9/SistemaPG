@@ -1,0 +1,90 @@
+{% extends "baseG.html" %} {% load static %} {% block body %}
+<div class="row justify-content-center mt-4">
+  <!-- Columna para el formulario -->
+  <h1 class="text-center">Estados de vehiculos</h1>
+  <div class="col-md-6 col-lg-5">
+    <div class="form-container">
+      <h1 class="text-center">Agregar estado</h1>
+      <form method="POST" class="contact-form form-validate">
+        {% if formulario.errors %}
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Mensaje: </strong> {{ formulario.errors }}
+        </div>
+        {% endif %} {% if messages %} {% for message in messages %}
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Mensaje: </strong> {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %} {% endif %} {% csrf_token %}
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <input type="text" id="on" name="estado" value="on" hidden />
+              <label for="descripcion">Descripcion estado de vehiculo: </label>
+              <input
+                type="text"
+                name="descripcion"
+                id="descripcion"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <input
+            class="btn btn-success w-100"
+            type="submit"
+            value="Registrar"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Columna para la tabla -->
+  <div class="col-md-6 col-lg-7">
+    <div
+      class="table-container mt-4 shadow p-3 mb-5 bg-body-tertiary rounded border border-secondary"
+    >
+      <div class="table-responsive">
+        <table id="vehiculosTabla" class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Placa</th>
+              <th>Descripcion</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for estados in estados %}
+            <tr>
+              <td>{{ estados.id }}</td>
+              <td>{{ estados.mantenimiento.placa }}</td>
+              <td>{{ estados.descripcion }}</td>
+              <td>
+                <a href="#" class="btn btn-success"
+                  ><i class="bi bi-check-circle-fill"></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

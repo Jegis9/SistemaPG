@@ -6,6 +6,22 @@
         Control de usuarios internos
         <i class="bi bi-calendar-plus-fill text-success"></i>
       </h1>
+      {% if formulario.errors %}
+
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Mensaje: </strong> {{ formulario.errors }}
+      </div>
+      {% endif %} {% if messages %} {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Mensaje: </strong> {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %} {% endif %}
     </div>
 
     <div class="col-12 d-flex flex-column align-items-center">
@@ -81,9 +97,10 @@
                     >Editar</a
                   >
                 </button>
+
                 <button class="bg-success">
-                  <a href="edicionInsumo/{{ insumo.codigo }}" class="text-black"
-                    >Datos</a
+                  <a href="{% url 'personal' user.id %}" class="text-black"
+                    >+CV</a
                   >
                 </button>
               </div>

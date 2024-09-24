@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'Aplicaciones.user',
     'Aplicaciones.Publico',
     'Aplicaciones.emergenciasRecibidas',
-    'Aplicaciones.lUsuarios'
+    'Aplicaciones.lUsuarios',
+    'Aplicaciones.Personal',
+    'Aplicaciones.Vehiculos',
+    'Aplicaciones.EPP'
 ]
 
 MIDDLEWARE = [

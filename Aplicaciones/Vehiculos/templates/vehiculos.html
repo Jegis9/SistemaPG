@@ -1,0 +1,102 @@
+{% extends "baseG.html" %} {% load static %} {% block body %}
+<div class="row justify-content-center mt-4">
+  <!-- Columna para el formulario -->
+  <h1 class="text-center">Vehiculos</h1>
+  <div class="col-md-6 col-lg-5">
+    <div class="form-container">
+      <h1 class="text-center">Agregar vehiculos</h1>
+      <form method="POST" class="contact-form form-validate">
+        {% if formulario.errors %}
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Mensaje: </strong> {{ formulario.errors }}
+        </div>
+        {% endif %} {% if messages %} {% for message in messages %}
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Mensaje: </strong> {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %} {% endif %} {% csrf_token %}
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="placa">Placa:</label>
+              <input
+                type="text"
+                name="placa"
+                id="placa"
+                class="form-control"
+                placeholder="Escribe Cargo actual"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="tipo">Tipo vehiculo: </label>
+              <input type="text" name="tipo" id="tipo" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <input
+            class="btn btn-success w-100"
+            type="submit"
+            value="Registrar"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Columna para la tabla -->
+  <div class="col-md-6 col-lg-7">
+    <div
+      class="table-container mt-4 shadow p-3 mb-5 bg-body-tertiary rounded border border-secondary"
+    >
+      <div class="table-responsive">
+        <table id="myTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Placa</th>
+              <th>Tipo</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for vehiculo in vehiculos_list %}
+            <tr>
+              <td>{{ vehiculo.id }}</td>
+              <td>{{ vehiculo.placas }}</td>
+              <td>{{ vehiculo.tipo_vehiculo }}</td>
+              <td>
+                <a
+                  href="{% url 'mantenimientoVehiculos' vehiculo.id %}"
+                  class="btn btn-warning"
+                  ><i class="bi bi-recycle"></i
+                ></a>
+                <a href="#" class="btn btn-danger"
+                  ><i class="bi bi-x-circle-fill"></i
+                ></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

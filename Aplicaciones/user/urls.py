@@ -6,7 +6,7 @@ from .views import CustomLoginView
 
 
 urlpatterns = [
-    path('landingPage/', views.landingPage, name='landingPage'),
+    path('', views.landingPage, name='landingPage'),
     path('register/', views.register, name='register' ),
     path('registro_interno/', views.nuevo_registro, name='registro_interno' ),
     path('logout/', views.logout, name='logout' ),

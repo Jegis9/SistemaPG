@@ -70,7 +70,7 @@
                     data-usuario="{{ emergencia.user }}"
                     data-usuario-correo="{{ emergencia.user.email}}"
                   >
-                    Ver
+                    <i class="bi bi-eye-fill"></i>
                   </button>
                   <!-- aqui envio la emergenciaa marcar segun el codigo -->
                   <form
@@ -80,7 +80,7 @@
                   >
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger" id="cerrar">
-                      Cerrar
+                      <i class="bi bi-x-circle-fill"></i>
                     </button>
                   </form>
                 </div>

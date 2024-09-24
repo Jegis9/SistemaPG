@@ -43,7 +43,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="/landingPage">Nosotros</a>
+                <a class="nav-link" href="{% url 'landingPage' %}">Nosotros</a>
               </li>
 
               <li class="nav-item">
@@ -55,10 +55,10 @@
             </ul>
 
             <button class="btn btn-primary me-2" type="submit">
-              <a class="nav-link" href="/register">Registrarse</a>
+              <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
             </button>
             <button class="btn btn-success" type="submit">
-              <a class="nav-link" href="/login">Iniciar sesión</a>
+              <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
             </button>
           </div>
         </div>

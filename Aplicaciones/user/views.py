@@ -82,9 +82,10 @@ def nuevo_registro(request):
             profile.save()
             
             messages.success(request, 'Nuevo usuario agregado correctamente')
+            return redirect('lInternos')
         else:
             print("Errores del formulario:", form.errors)
-            print("Datos recibidos:", request.POST)
+    
     else:
         form = CreateUserForm()
     
