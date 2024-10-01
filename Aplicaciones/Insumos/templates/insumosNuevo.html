@@ -1,3 +1,4 @@
+<!-- insumo.html -->
 {% extends "baseG.html" %} {% load static %} {% block body %}
 <div class="row justify-content-center mt-4">
   <!-- Columna para el formulario -->
@@ -6,22 +7,9 @@
     <div class="form-container">
       <h1 class="text-center">Agregar insumos</h1>
       <form method="POST" class="contact-form form-validate">
-        {% if formulario.errors %}
+        {% if messages %} {% for message in messages %}
         <div
-          class="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Mensaje: </strong> {{ formulario.errors }}
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>
-        {% endif %} {% if messages %} {% for message in messages %}
-        <div
-          class="alert alert-success alert-dismissible fade show"
+          class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %} alert-dismissible fade show"
           role="alert"
         >
           <strong>Mensaje: </strong> {{ message }}
@@ -34,9 +22,8 @@
         </div>
         {% endfor %} {% endif %} {% csrf_token %}
         <div class="row">
-          <!-- Eliminamos la selección de Personal -->
           <!-- Selección de EPP -->
-          <div class="col-sm-12 mb-3">
+          <div class="col-sm-6 mb-3">
             <!-- Opción para agregar nuevo EPP -->
             <div class="form-group mt-3">
               <div class="alert alert-danger" role="alert">
@@ -57,9 +44,9 @@
                 id="cantidadInicial"
                 class="form-control"
                 placeholder="Cantidad Inicial"
+                min="1"
                 required
               />
-              <!-- Botón para guardar -->
             </div>
           </div>
         </div>
@@ -86,8 +73,8 @@
             <tr>
               <th>#</th>
               <th>Nombre</th>
-              <th>Stock Inicial</th>
-              <th>Stock Actual</th>
+              <th>Stock inicial</th>
+              <th>Stock actual</th>
               <th>Opciones</th>
             </tr>
           </thead>
@@ -97,7 +84,9 @@
               <td>{{ insumo.codigo }}</td>
               <td>{{ insumo.nombre }}</td>
               <td>{{ insumo.stock_inicial }}</td>
-              <td>{{ insumo.stock_actual }}</td>
+              <td class="stock-cell" data-stock="{{ insumo.stock_actual }}">
+                {{ insumo.stock_actual }}
+              </td>
               <td>
                 <button
                   class="btn btn-warning mb-2 mb-md-0"
@@ -141,35 +130,45 @@
                         method="POST"
                       >
                         {% csrf_token %}
-                        <label for="cantidad">Cantidad:</label>
-                        <div class="form-floating mb-3">
+                        <div class="mb-3">
+                          <label for="cantidad">Cantidad:</label>
                           <input
                             type="number"
                             class="form-control"
                             name="cantidad"
                             id="cantidad"
+                            min="1"
                             required
                           />
                         </div>
-                        <label for="tipo_movimiento">Tipo de Movimiento:</label>
-                        <select
-                          name="tipo_movimiento"
-                          id="tipo_movimiento"
-                          class="form-control mb-3"
-                          required
-                        >
-                          <option value="SALIDA">SALIDA</option>
-                          <option value="ENTRADA">ENTRADA</option>
-                        </select>
-                        <label for="observacion">Observación:</label>
-                        <input
-                          type="text"
-                          id="observacion"
-                          name="observacion"
-                          class="form-control mb-3"
-                          placeholder="Detalles de la observación"
-                          value="malo"
-                        />
+                        <div class="mb-3">
+                          <label for="tipo_movimiento"
+                            >Tipo de Movimiento:</label
+                          >
+                          <select
+                            name="tipo_movimiento"
+                            id="tipo_movimiento"
+                            class="form-control"
+                            required
+                          >
+                            <option value="" disabled selected>
+                              Selecciona tipo de movimiento
+                            </option>
+                            <option value="SALIDA">SALIDA</option>
+                            <option value="ENTRADA">ENTRADA</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label for="observacion">Observación:</label>
+                          <input
+                            type="text"
+                            id="observacion"
+                            name="observacion"
+                            class="form-control"
+                            placeholder="Detalles de la observación"
+                            value="malo"
+                          />
+                        </div>
                         <div class="d-grid">
                           <button class="btn btn-warning btn-lg" type="submit">
                             Guardar
