@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12">
       <h1 class="text-center text-success">
-        Reportes EPP
+        Reportes Herramientas
         <i class="bi bi-calendar-plus-fill text-success"></i>
       </h1>
       {% if formulario.errors %}
@@ -37,10 +37,10 @@
         <thead>
           <tr>
             <th class="header-cell">#</th>
-            <th class="header-cell w-5">Nombre de usuario</th>
-            <th class="header-cell w-5 border">Fecha y hora</th>
-            <th class="header-cell w-5 border">Personal</th>
-            <th class="header-cell w-5 border">Equipo</th>
+            <th class="header-cell w-5">Fecha</th>
+            <th class="header-cell w-5 border">Descripcion</th>
+            <th class="header-cell w-5 border">Estado</th>
+            <th class="header-cell w-5 border">Nombre</th>
             <th class="header-cell w-5 border">Opciones</th>
           </tr>
         </thead>
@@ -49,30 +49,26 @@
           <tr>
             <td class="border border-success">{{ estados.codigo }}</td>
             <td class="border border-success">{{ estados.reportado }}</td>
-            <td class="border border-success">
-              {{ estados.PersonalEpps.idEpp.nombre }}
-            </td>
+            <td class="border border-success">{{ estados.descripcion }}</td>
+
+            <td class="border border-success">{{estados.estado}}</td>
 
             <td class="border border-success">
-              {{estados.PersonalEpps.idPersonal.profile.name1}}
+              {{estados.herramienta.nombre}}
             </td>
-            <td class="border border-success">{{estados.descripcion}}</td>
             <td class="border border-success">
               <div
                 class="d-flex flex-column flex-md-row justify-content-between"
               >
-                <button
-                  class="btn btn-danger mb-2 mb-md-0"
-                  type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#ModalEliminar"
+                <form
+                  method="POST"
+                  action="{% url 'marcar_arreglado' estados.codigo %}"
                 >
-                  <a
-                    href="eliminacionInsumo/{{ insumo.codigo }}"
-                    class="text-light"
-                    ><i class="bi bi-check-circle-fill"></i
-                  ></a>
-                </button>
+                  {% csrf_token %}
+                  <button class="btn btn-danger mb-2 mb-md-0" type="submit">
+                    <i class="bi bi-check-circle-fill"></i>
+                  </button>
+                </form>
               </div>
             </td>
           </tr>
