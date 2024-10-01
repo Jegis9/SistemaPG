@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'Aplicaciones.Personal',
     'Aplicaciones.Vehiculos',
     'Aplicaciones.EPP',
-    'Aplicaciones.Herramientas'
+    'Aplicaciones.Herramientas',
+    'Aplicaciones.Estadisticas'
 ]
 
 MIDDLEWARE = [
