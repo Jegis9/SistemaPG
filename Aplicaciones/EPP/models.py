@@ -15,3 +15,5 @@ class EstadoEPP(models.Model):
     PersonalEpps = models.ForeignKey(PersonalEpps, on_delete=models.CASCADE)
     reportado = models.DateTimeField(default=timezone.now)  # Valor por defecto para las filas existentes
     descripcion = models.CharField(null=False, blank=False, max_length=100)
+    
+    estado = models.CharField(default='malo',max_length=100)

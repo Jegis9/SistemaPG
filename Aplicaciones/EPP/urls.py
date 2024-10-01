@@ -6,7 +6,10 @@ urlpatterns = [
 # rutas de modulos para navegacion
     
     path('epp/', views.epp, name='epp'),
-path('estadoEPP/<int:asignado_id>/', views.estadoEPP, name='estadoEPP'),
-path('lEpp/', views.lEpp, name='lEpp')
+    path('estadoEPP/<int:asignado_id>/', views.estadoEPP, name='estadoEPP'),
+    path('lEpp/', views.lEpp, name='lEpp'),
+   path('marcar_arregladoEPP/<int:codigo>/', views.marcar_arregladoEPP, name='marcar_arregladoEPP'),
+
+
   
 ]

@@ -37,11 +37,12 @@
         <thead>
           <tr>
             <th class="header-cell">#</th>
-            <th class="header-cell w-5">Nombre de usuario</th>
-            <th class="header-cell w-5 border">Fecha y hora</th>
-            <th class="header-cell w-5 border">Personal</th>
+            <th class="header-cell w-5">Fecha</th>
             <th class="header-cell w-5 border">Equipo</th>
-            <th class="header-cell w-5 border">Opciones</th>
+            <th class="header-cell w-5 border">Personal</th>
+            <th class="header-cell w-5 border">Descripcion</th>
+
+            <th class="header-cell w-5 border">opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -57,22 +58,20 @@
               {{estados.PersonalEpps.idPersonal.profile.name1}}
             </td>
             <td class="border border-success">{{estados.descripcion}}</td>
+
             <td class="border border-success">
               <div
                 class="d-flex flex-column flex-md-row justify-content-between"
               >
-                <button
-                  class="btn btn-danger mb-2 mb-md-0"
-                  type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#ModalEliminar"
+                <form
+                  method="POST"
+                  action="{% url 'marcar_arregladoEPP' estados.codigo %}"
                 >
-                  <a
-                    href="eliminacionInsumo/{{ insumo.codigo }}"
-                    class="text-light"
-                    ><i class="bi bi-check-circle-fill"></i
-                  ></a>
-                </button>
+                  {% csrf_token %}
+                  <button class="btn btn-danger mb-2 mb-md-0" type="submit">
+                    <i class="bi bi-check-circle-fill"></i>
+                  </button>
+                </form>
               </div>
             </td>
           </tr>

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import Epp, PersonalEpps, EstadoEPP
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.contrib import messages
 # Create your views here.
 
 
@@ -55,11 +56,16 @@ def estadoEPP(request, asignado_id):
         return render(request, 'epp.html', {"asignacion": asignacion})  # Cargar la página con la asignación
 
 
+
+
+def marcar_arregladoEPP(request, codigo):
+    estado = get_object_or_404(EstadoEPP, codigo=codigo)
+    estado.estado = "Bueno"  # Cambia el estado a "Bueno"
+    estado.save()
+    messages.success(request, "La herramienta ha sido marcada como arreglada.")
+    return redirect('lEpp')  # Redirige de nuevo a la lista
+
+
 def lEpp(request):
-    
-    estados = EstadoEPP.objects.all()
-    
+    estados = EstadoEPP.objects.filter(estado__in=["malo", "Malo"])  # Filtrar solo los estados no arreglados
     return render(request, 'lepp.html', {"estados": estados})
-
-
-
