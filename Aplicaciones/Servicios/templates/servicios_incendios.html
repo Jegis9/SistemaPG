@@ -24,7 +24,7 @@
         <td>{{ servicio.fecha_hora }}</td>
         <td>{{ servicio.salida_hora }}</td>
         <td>{{ servicio.entrada_hora }}</td>
-        <td>{{ servicio.clase_fuego }}</td>
+        <td>{{ servicio.incendios.clase_fuego }}</td>
         <td>
           <!-- Botón para abrir el modal -->
           <button
@@ -95,19 +95,32 @@
                 <!-- Información Específica de Incendios -->
                 <div class="col-md-6">
                   <h6>Detalles de Incendios</h6>
+                  {% if servicio.incendios %}
                   <p>
                     <strong>Servicio de Incendio Inmueble:</strong> {{
-                    servicio.servicio_incendio_inmueble }}
+                    servicio.incendios.servicio_incendio_inmueble }}
                   </p>
-                  <p><strong>Valor:</strong> {{ servicio.valor }}</p>
-                  <p><strong>Pérdida:</strong> {{ servicio.perdida }}</p>
-                  <p><strong>Proporción:</strong> {{ servicio.proporcion }}</p>
+                  <p><strong>Valor:</strong> {{ servicio.incendios.valor }}</p>
                   <p>
-                    <strong>Clase de Fuego:</strong> {{ servicio.clase_fuego }}
+                    <strong>Pérdida:</strong> {{ servicio.incendios.perdida }}
                   </p>
                   <p>
-                    <strong>Hora Efectiva:</strong> {{ servicio.hora_efectiva }}
+                    <strong>Proporción:</strong> {{
+                    servicio.incendios.proporcion }}
                   </p>
+                  <p>
+                    <strong>Clase de Fuego:</strong> {{
+                    servicio.incendios.clase_fuego }}
+                  </p>
+                  <p>
+                    <strong>Hora Efectiva:</strong> {{
+                    servicio.incendios.hora_efectiva }}
+                  </p>
+                  {% else %}
+                  <p class="text-danger">
+                    No hay detalles de Incendios asociados.
+                  </p>
+                  {% endif %}
                 </div>
               </div>
             </div>

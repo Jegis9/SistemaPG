@@ -1,3 +1,5 @@
+<!-- templates/servicios_ambulancia.html -->
+
 {% extends "baseG.html" %} {% load static %} {% block body %}
 <div class="container mt-5">
   <h2 class="mb-4">Lista de Servicios de Ambulancia</h2>
@@ -6,12 +8,10 @@
     <thead class="table-dark">
       <tr>
         <th class="header-cell w-5">Dirección</th>
-
         <th class="header-cell w-5">Turno</th>
         <th class="header-cell w-5">Fecha y Hora</th>
         <th class="header-cell w-5">Salida y Hora</th>
         <th class="header-cell w-5">Entrada y Hora</th>
-
         <th class="header-cell w-5">Acciones</th>
       </tr>
     </thead>
@@ -19,7 +19,6 @@
       {% for servicio in servicios_ambulancia %}
       <tr>
         <td>{{ servicio.direccion }}</td>
-
         <td>{{ servicio.turno }}</td>
         <td>{{ servicio.fecha_hora }}</td>
         <td>{{ servicio.salida_hora }}</td>
@@ -37,7 +36,7 @@
         </td>
       </tr>
 
-      <!-- Modal para cada servicio de Incendios -->
+      <!-- Modal para cada servicio de Ambulancia -->
       <div
         class="modal fade"
         id="modalAmbulancia{{ servicio.id }}"
@@ -52,7 +51,7 @@
                 class="modal-title"
                 id="modalAmbulanciaLabel{{ servicio.id }}"
               >
-                Detalles del Servicio de Incendios
+                Detalles del Servicio de Ambulancia
               </h5>
               <button
                 type="button"
@@ -70,54 +69,64 @@
                   <p><strong>KM Entrada:</strong> {{ servicio.kmEntrada }}</p>
                   <p><strong>KM Salida:</strong> {{ servicio.kmSalida }}</p>
                   <p>
-                    <strong>Jefe de Servicio:</strong> {{
-                    servicio.jefeServicio}}
-                  </p>
-                  <p>
-                    <strong>Bombero que reporta:</strong> {{
-                    servicio.bomberoReporta }}
-                  </p>
-
-                  <p>
-                    <strong>Fecha y hora:</strong> {{ servicio.fecha_hora }}
-                  </p>
-                  <p>
-                    <strong>Hora de salida:</strong> {{ servicio.salida_hora }}
-                  </p>
-                  <p>
-                    <strong>Hora de entrada:</strong> {{ servicio.entrada_hora
+                    <strong>Jefe de Servicio:</strong> {{ servicio.jefeServicio
                     }}
                   </p>
-                  <p><strong>Servicio:</strong> {{ servicio.servicio }}</p>
-                  <p>
-                    <strong>Observaciones:</strong> {{ servicio.observaciones }}
-                  </p>
-                  <p><strong>Turno:</strong> {{ servicio.turno }}</p>
                   <p>
                     <strong>Telefonista:</strong> {{ servicio.telefonista }}
                   </p>
+                  <p>
+                    <strong>Bombero Reporta:</strong> {{ servicio.bomberoReporta
+                    }}
+                  </p>
+                  <p><strong>Turno:</strong> {{ servicio.turno }}</p>
+                  <p>
+                    <strong>Fecha y Hora:</strong> {{ servicio.fecha_hora }}
+                  </p>
+                  <p>
+                    <strong>Salida y Hora:</strong> {{ servicio.salida_hora }}
+                  </p>
+                  <p>
+                    <strong>Entrada y Hora:</strong> {{ servicio.entrada_hora }}
+                  </p>
+                  <p>
+                    <strong>Observaciones:</strong> {{ servicio.observaciones }}
+                  </p>
                 </div>
-                <!-- Información Específica de Incendios -->
+                <!-- Información Específica de Ambulancia -->
                 <div class="col-md-6">
-                  <h6>Detalles de Incendios</h6>
+                  <h6>Detalles de Ambulancia</h6>
+                  {% if servicio.ambulancia %}
                   <p>
-                    <strong>Direccion traslado:</strong> {{
-                    servicio.direccion_traslado }}
+                    <strong>Dirección de Traslado:</strong> {{
+                    servicio.ambulancia.direccion_traslado }}
                   </p>
                   <p>
-                    <strong>Nombre de paciente:</strong> {{
-                    servicio.nombre_paciente }}
+                    <strong>Nombre del Paciente:</strong> {{
+                    servicio.ambulancia.nombre_paciente }}
                   </p>
                   <p>
-                    <strong>Direccion de paciente:</strong> {{
-                    servicio.direccion_paciente }}
+                    <strong>Dirección del Paciente:</strong> {{
+                    servicio.ambulancia.direccion_paciente }}
                   </p>
-                  <p><strong>Edad de paciente:</strong> {{ servicio.edad }}</p>
-                  <p><strong>Sexo del paciente:</strong> {{ servicio.sexo }}</p>
-                  <p><strong>Traslado a:</strong> {{ servicio.traslado_A }}</p>
+                  <p><strong>Edad:</strong> {{ servicio.ambulancia.edad }}</p>
                   <p>
-                    <strong>Forma de aviso:</strong> {{ servicio.forma_aviso }}
+                    <strong>Sexo:</strong> {{
+                    servicio.ambulancia.get_sexo_display }}
                   </p>
+                  <p>
+                    <strong>Traslado A:</strong> {{
+                    servicio.ambulancia.traslado_A }}
+                  </p>
+                  <p>
+                    <strong>Forma de Aviso:</strong> {{
+                    servicio.ambulancia.forma_aviso }}
+                  </p>
+                  {% else %}
+                  <p class="text-danger">
+                    No hay detalles de Ambulancia asociados.
+                  </p>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -137,7 +146,9 @@
     </tbody>
   </table>
   {% else %}
-  <div class="alert alert-info">No hay servicios de Incendios registrados.</div>
+  <div class="alert alert-info">
+    No hay servicios de Ambulancia registrados.
+  </div>
   {% endif %}
 </div>
 {% endblock %}
