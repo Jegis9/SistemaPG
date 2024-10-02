@@ -110,10 +110,10 @@ def detalle_insumo(request, codigo):
     try:
         insumo = Insumo.objects.get(codigo=codigo)
         movimientos = MovimientoInsumo.objects.filter(insumo=insumo).order_by('-fecha')
-        return render(request, 'detalle_insumo.html', {
+        return render(request, 'lInsumos.html', {
             'insumo': insumo,
             'movimientos': movimientos
         })
     except Insumo.DoesNotExist:
         messages.error(request, 'Insumo no encontrado')
-        return redirect('registrar_insumo')
+        return redirect('registrar_insumo_nuevo')

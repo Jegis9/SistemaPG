@@ -4,7 +4,7 @@
   <h1 class="text-center">EPP</h1>
   <div class="col-md-6 col-lg-5">
     <div class="form-container">
-      <h1 class="text-center">Agregar insumos</h1>
+      <h1 class="text-center">Agregar epp</h1>
       <form method="POST" class="contact-form form-validate">
         {% if formulario.errors %}
         <div
@@ -12,12 +12,6 @@
           role="alert"
         >
           <strong>Mensaje: </strong> {{ formulario.errors }}
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
         </div>
         {% endif %} {% if messages %} {% for message in messages %}
         <div
@@ -34,32 +28,54 @@
         </div>
         {% endfor %} {% endif %} {% csrf_token %}
         <div class="row">
-          <!-- Eliminamos la selección de Personal -->
+          <!-- Selección de Personal -->
+          <div class="col-sm-6 mb-3">
+            {% if users %}
+            <div class="form-group">
+              <label for="personal">Personal:</label>
+              <select name="personal" id="personal" class="form-control">
+                {% for user in users %}
+                <option value="{{ user.id }}">
+                  {{ user.profile.name1 }} {{ user.profile.lastname1 }}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+            {% endif %}
+          </div>
+
           <!-- Selección de EPP -->
-          <div class="col-sm-12 mb-3">
+          <div class="col-sm-6 mb-3">
+            {% if epps %}
+            <div class="form-group">
+              <label for="epp">EPP:</label>
+              <select name="epp" id="epp" class="form-control">
+                {% for epp in epps %}
+                <option value="{{ epp.codigo }}">{{ epp.nombre }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            {% endif %}
+
             <!-- Opción para agregar nuevo EPP -->
             <div class="form-group mt-3">
               <div class="alert alert-danger" role="alert">
-                <strong>¿No encuentras el insumo?</strong> Agrega uno nuevo:
+                <strong>¿No encuentras el EPP?</strong> Agrega uno nuevo:
               </div>
               <input
                 type="text"
-                name="nombre"
-                id="nombre"
+                name="nuevo_epp"
+                id="nuevo_epp"
                 class="form-control"
-                placeholder="Nombre del nuevo insumo"
-                required
-              />
-
-              <input
-                type="number"
-                name="cantidadInicial"
-                id="cantidadInicial"
-                class="form-control"
-                placeholder="Cantidad Inicial"
-                required
+                placeholder="Nombre del nuevo EPP"
               />
               <!-- Botón para guardar -->
+
+              <input
+                class="btn btn-success w-100"
+                type="submit"
+                value="Registrar equipo"
+              />
             </div>
           </div>
         </div>
@@ -85,34 +101,32 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Nombre</th>
-              <th>Stock Inicial</th>
-              <th>Stock Actual</th>
+              <th>Personal</th>
+              <th>EPP asignado</th>
               <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
-            {% for insumo in insumos %}
+            {% for asignacion in asignaciones %}
             <tr>
-              <td>{{ insumo.codigo }}</td>
-              <td>{{ insumo.nombre }}</td>
-              <td>{{ insumo.stock_inicial }}</td>
-              <td>{{ insumo.stock_actual }}</td>
+              <td>{{ asignacion.id }}</td>
+              <td>{{ asignacion.idPersonal }}</td>
+              <td>{{ asignacion.idEpp.nombre }}</td>
               <td>
                 <button
                   class="btn btn-warning mb-2 mb-md-0"
                   type="button"
                   data-bs-toggle="modal"
-                  data-bs-target="#ajustar_stock{{ insumo.codigo }}"
+                  data-bs-target="#estadoEPP{{ asignacion.id }}"
                 >
                   <i class="bi bi-recycle"></i>
                 </button>
               </td>
             </tr>
-            <!-- Modal para cada insumo -->
+            <!-- Modal para cada asignación -->
             <div
               class="modal fade border"
-              id="ajustar_stock{{ insumo.codigo }}"
+              id="estadoEPP{{ asignacion.id }}"
               tabindex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
@@ -137,38 +151,31 @@
                   <div class="modal-body">
                     <div class="container px-5 my-5">
                       <form
-                        action="{% url 'ajustar_stock' insumo.codigo %}"
+                        action="{% url 'estadoEPP' asignacion.id %}"
                         method="POST"
                       >
                         {% csrf_token %}
-                        <label for="cantidad">Cantidad:</label>
-                        <div class="form-floating mb-3">
-                          <input
-                            type="number"
-                            class="form-control"
-                            name="cantidad"
-                            id="cantidad"
-                            required
-                          />
-                        </div>
-                        <label for="tipo_movimiento">Tipo de Movimiento:</label>
-                        <select
-                          name="tipo_movimiento"
-                          id="tipo_movimiento"
-                          class="form-control mb-3"
-                          required
+                        <label for="descripcion"
+                          >Descripción del reporte:</label
                         >
-                          <option value="SALIDA">SALIDA</option>
-                          <option value="ENTRADA">ENTRADA</option>
-                        </select>
-                        <label for="observacion">Observación:</label>
+                        <div class="form-floating mb-3">
+                          <textarea
+                            name="descripcion"
+                            id="descripcion"
+                            rows="4"
+                            cols="50"
+                            class="form-control"
+                          ></textarea>
+                        </div>
+                        <label for="estado">Estado:</label>
+
                         <input
-                          type="text"
-                          id="observacion"
-                          name="observacion"
-                          class="form-control mb-3"
-                          placeholder="Detalles de la observación"
+                          type="radio"
+                          id="estado"
+                          name="estado"
                           value="malo"
+                          checked
+                          readonly
                         />
                         <div class="d-grid">
                           <button class="btn btn-warning btn-lg" type="submit">
@@ -188,4 +195,5 @@
     </div>
   </div>
 </div>
+
 {% endblock %}

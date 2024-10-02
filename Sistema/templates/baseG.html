@@ -30,7 +30,16 @@
     <link rel="stylesheet" href="{% static 'css/stylesPublico.css' %}" />
     <script src="{% static 'js/tabla.js' %}"></script>
     <script src="{% static 'js/tablas.js' %}"></script>
+    <script src="{% static 'js/servicios.js' %}"></script>
     <style>
+      .form-control input,
+.form-control select,
+.form-control textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+}
       button {
         padding: 0.25rem 1rem !important;
         border-radius: 0.5rem !important;
@@ -93,8 +102,7 @@
               >
                 <li class="nav-item">
                   <a href="{% url 'estadisticas' %}" class="nav-link px-sm-0 px-2">
-                    <i class="fs-5 bi-house"></i
-                    ><span class="ms-1 d-none d-sm-inline">Estadisticas</span>
+                    <i class="bi bi-bar-chart-fill"></i><span class="ms-1 d-none d-sm-inline">Estadisticas</span>
                   </a>
                 </li>
                 <li class="dropdown">
@@ -105,8 +113,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="bi bi-clipboard-minus"></i
-                    ><span class="ms-1 d-none d-sm-inline">Emergencias</span>
+                  <i class="bi bi-bell-fill"></i><span class="ms-1 d-none d-sm-inline">Emergencias</span>
                   </a>
                   <ul
                     class="dropdown-menu dropdown-menu text-small shadow"
@@ -128,12 +135,17 @@
                     </li>
                   </ul>
                 </li>
-                <li>
-                  <a href="{% url 'home' %}" class="nav-link px-sm-0 px-2">
-                    <i class="bi bi-calendar-plus-fill"></i
-                    ><span class="ms-1 d-none d-sm-inline">Insumos</span></a
-                  >
+         
+
+    
+
+                <li class="nav-item"></li>
+                  <a href="{% url 'registrar_insumo_nuevo' %}" class="nav-link px-sm-0 px-2">
+                    <i class="bi bi-capsule-pill"></i><span class="ms-1 d-none d-sm-inline">Insumos</span>
+                  </a>
                 </li>
+
+
                 <li class="dropdown">
                   <a
                     href="#"
@@ -142,8 +154,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="bi bi-clipboard-minus"></i
-                    ><span class="ms-1 d-none d-sm-inline">Usuarios</span>
+                  <i class="bi bi-person"></i><span class="ms-1 d-none d-sm-inline">Usuarios</span>
                   </a>
                   <ul
                     class="dropdown-menu dropdown-menu text-small shadow"
@@ -188,8 +199,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="bi bi-clipboard-minus"></i
-                    ><span class="ms-1 d-none d-sm-inline">EPP</span>
+                  <i class="bi bi-person-heart"></i><span class="ms-1 d-none d-sm-inline">EPP</span>
                   </a>
                   <ul
                     class="dropdown-menu dropdown-menu text-small shadow"
@@ -225,8 +235,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="bi bi-clipboard-minus"></i
-                    ><span class="ms-1 d-none d-sm-inline">Herramientas</span>
+                  <i class="bi bi-wrench"></i><span class="ms-1 d-none d-sm-inline">Herramientas</span>
                   </a>
                   <ul
                     class="dropdown-menu dropdown-menu text-small shadow"
@@ -248,8 +257,7 @@
 
                 <li>
                   <a href="{% url 'vehiculos' %}" class="nav-link px-sm-0 px-2">
-                    <i class="fs-5 bi-people"></i
-                    ><span class="ms-1 d-none d-sm-inline">Vehiculos</span>
+                    <i class="bi bi-truck"></i><span class="ms-1 d-none d-sm-inline">Vehiculos</span>
                   </a>
                 </li>
 
@@ -261,21 +269,30 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="bi bi-clipboard-minus"></i
-                    ><span class="ms-1 d-none d-sm-inline">Usuarios</span>
+                  <i class="bi bi-person-vcard-fill"></i><span class="ms-1 d-none d-sm-inline">Servicios</span>
                   </a>
                   <ul
                     class="dropdown-menu dropdown-menu text-small shadow"
                     aria-labelledby="dropdown"
                   >
                     <li>
-                      <a class="dropdown-item" href="{% url 'lInternos' %}"
-                        >Internos</a
+                      <a class="dropdown-item" href="{% url 'agregar_servicio' %}"
+                        >Registrar</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{% url 'lUsuarios' %}"
-                        >Publicos</a
+                      <a class="dropdown-item" href="{% url 'lista_varios' %}"
+                        >Lista servicios varios</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'lista_ambulancia' %}"
+                        >Lista ambulancia</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'lista_incendios' %}"
+                        >Lista Incendios</a
                       >
                     </li>
                   </ul>

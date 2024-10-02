@@ -96,6 +96,17 @@
                 >
                   <i class="bi bi-recycle"></i>
                 </button>
+
+                <form
+                  method="POST"
+                  action="{% url 'detalle_insumo' insumo.codigo %}"
+                  class="btn mb-2 mb-md-0"
+                >
+                  {% csrf_token %}
+                  <button class="btn btn-secondary mb-2 mb-md-0" type="submit">
+                    <i class="bi bi-clock-history"></i>
+                  </button>
+                </form>
               </td>
             </tr>
             <!-- Modal para cada insumo -->

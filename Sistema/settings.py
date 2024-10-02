@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'Aplicaciones.EPP',
     'Aplicaciones.Herramientas',
     'Aplicaciones.Estadisticas',
-    'Aplicaciones.Insumos'
+    'Aplicaciones.Insumos',
+    'Aplicaciones.Servicios'
 ]
 
 MIDDLEWARE = [
