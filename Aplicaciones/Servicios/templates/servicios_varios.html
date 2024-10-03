@@ -24,8 +24,7 @@
         <td>{{ servicio.fecha_hora }}</td>
         <td>{{ servicio.salida_hora }}</td>
         <td>{{ servicio.entrada_hora }}</td>
-        <td>{{ servicio.varios.tipo_servicio_varios }}</td>
-
+        <td>{{ servicio.tipo_servicio_varios }}</td>
         <td>
           <!-- Botón para abrir el modal -->
           <button
@@ -69,42 +68,41 @@
                   <p><strong>KM Entrada:</strong> {{ servicio.kmEntrada }}</p>
                   <p><strong>KM Salida:</strong> {{ servicio.kmSalida }}</p>
                   <p>
-                    <strong>Jefe de Servicio:</strong>{{servicio.jefeServicio}}
-                  </p>
-                  <p><strong>Telefonista:</strong> {{servicio.telefonista}}</p>
-                  <p>
-                    <strong>Bombero Reporta:</strong>
-                    {{servicio.bomberoReporta}}
-                  </p>
-                  <p><strong>Turno:</strong> {{servicio.turno}}</p>
-                  <p><strong>Fecha y Hora:</strong> {{servicio.fecha_hora}}</p>
-                  <p>
-                    <strong>Salida y Hora:</strong> {{servicio.salida_hora}}
+                    <strong>Jefe de Servicio:</strong> {{ servicio.jefeServicio
+                    }}
                   </p>
                   <p>
-                    <strong>Entrada y Hora:</strong> {{servicio.entrada_hora}}
+                    <strong>Telefonista:</strong> {{ servicio.telefonista }}
                   </p>
                   <p>
-                    <strong>Observaciones:</strong> {{servicio.observaciones}}
+                    <strong>Bombero Reporta:</strong> {{ servicio.bomberoReporta
+                    }}
+                  </p>
+                  <p><strong>Turno:</strong> {{ servicio.turno }}</p>
+                  <p>
+                    <strong>Fecha y Hora:</strong> {{ servicio.fecha_hora }}
+                  </p>
+                  <p>
+                    <strong>Salida y Hora:</strong> {{ servicio.salida_hora }}
+                  </p>
+                  <p>
+                    <strong>Entrada y Hora:</strong> {{ servicio.entrada_hora }}
+                  </p>
+                  <p>
+                    <strong>Observaciones:</strong> {{ servicio.observaciones }}
                   </p>
                 </div>
                 <!-- Información Específica de Varios -->
                 <div class="col-md-6">
                   <h6>Detalles de Varios</h6>
-                  {% if servicio.varios %}
                   <p>
-                    <strong>Tipo de Servicio:</strong>
-                    {{servicio.varios.tipo_servicio_varios}}
+                    <strong>Tipo de Servicio:</strong> {{
+                    servicio.tipo_servicio_varios }}
                   </p>
                   <p>
-                    <strong>Autorizado Por:</strong>
-                    {{servicio.varios.autorizado_por}}
+                    <strong>Autorizado Por:</strong> {{ servicio.autorizado_por
+                    }}
                   </p>
-                  {% else %}
-                  <p class="text-danger">
-                    No hay detalles de Varios asociados.
-                  </p>
-                  {% endif %}
                 </div>
               </div>
             </div>

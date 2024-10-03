@@ -1,10 +1,11 @@
 from django.urls import path
 from . import views
+# your_app/urls.py
+
 
 urlpatterns = [
-    path('agregar-servicio/', views.agregar_servicio, name='agregar_servicio'),
-    path('servicios/', views.lista_servicios, name='lista_servicios'),  # Nueva URL
+    path('agregar_servicio/', views.agregar_servicio, name='agregar_servicio'),
     path('servicios/varios/', views.lista_varios, name='lista_varios'),
     path('servicios/ambulancia/', views.lista_ambulancia, name='lista_ambulancia'),
-    path('servicios/incendios/', views.lista_incendios, name='lista_incendios'),
+    path('servicios/incendios/', views.lista_incendios, name='lista_incendios')
 ]
