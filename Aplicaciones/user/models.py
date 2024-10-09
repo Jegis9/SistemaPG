@@ -6,36 +6,14 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
-# aqui se manejan los diferentes perfiles que tendra el usuario para poder redirigirlo a cierta pagina segun tenga su perfil relacionado con el usuario
-
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE) # se relaciona el perfil con un usuario
-#     pdi = models.IntegerField()
-#     name1 = models.CharField(max_length=100)
-#     name2 = models.CharField(max_length=100, blank=True, null=True)
-#     lastname1 = models.CharField(max_length=100)
-#     lastname2 = models.CharField(max_length=100, blank=True, null=True)
-#     brithday = models.DateField()
-#     phone = models.CharField(max_length=15)
-#     municipio = models.CharField(max_length=100)
-#     direccion = models.CharField(max_length=255)
-#     gender = models.CharField(max_length=1, choices=[('M', 'Masculino'), ('F', 'Femenino')])
-    
-#     is_internal = models.BooleanField(default=False) # se crea el campo para ver a que pertenece, por defecto False en views se cambia esto
-#                                                      # si el usuario no es interno lo dirigira a la pagina de emergencias
-#                                                      # si el susuario es interno lo digiriga a la pagina de administracion
-
-#     image = models.ImageField(default='avatar.jpg', upload_to='Profile_images')
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    pdi = models.IntegerField(null=True, blank=True)  # Allow null values
+    pdi = models.IntegerField(null=True, blank=True)  
     name1 = models.CharField(max_length=100)
     name2 = models.CharField(max_length=100, blank=True, null=True)
     lastname1 = models.CharField(max_length=100)
     lastname2 = models.CharField(max_length=100, blank=True, null=True)
-    birthday = models.DateField(null=True, blank=True)  # Fixed spelling
+    birthday = models.DateField(null=True, blank=True)  
     phone = models.CharField(max_length=15, blank=True, null=True)
     municipio = models.CharField(max_length=100, blank=True, null=True)
     direccion = models.CharField(max_length=255, blank=True, null=True)

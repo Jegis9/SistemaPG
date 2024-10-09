@@ -1,11 +1,11 @@
 # your_app/forms.py
 
 from django import forms
-from .models import Servicio
+from .models import ServicioPrincipal
 
 class ServicioForm(forms.ModelForm):
     class Meta:
-        model = Servicio
+        model = ServicioPrincipal
         fields = '__all__'
         widgets = {
             'fecha_hora': forms.DateTimeInput(attrs={'type': 'datetime-local'}),

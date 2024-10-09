@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'Aplicaciones.Herramientas',
     'Aplicaciones.Estadisticas',
     'Aplicaciones.Insumos',
-    'Aplicaciones.Servicios'
+    'Aplicaciones.Emergencias'
 ]
 
 MIDDLEWARE = [
