@@ -24,7 +24,7 @@ class Servicio(models.Model):
     km_recorridos = models.FloatField()
     servicio = models.CharField(max_length=50, choices=SERVICIO_CHOICES)  # Añadido
     fecha_hora = models.DateTimeField()  # Añadido
-
+    activo = models.BooleanField(default=True)  # Campo para desactivación lógica
     def __str__(self):
         return f"{self.servicio} - {self.fecha_hora}"
 

@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'Aplicaciones.Herramientas',
     'Aplicaciones.Estadisticas',
     'Aplicaciones.Insumos',
-    'Aplicaciones.Emergencias'
+    'Aplicaciones.Emergencias',
+    'crispy_forms',
+    'crispy_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -128,7 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Archivos multimedia
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -137,6 +141,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # LOGIN_REDIRECT_URL = 'home'
 # Redirigira al usuario a login cuando desee ingresar a una seccion donde debe de estar autenticado
 LOGIN_URL = '/login/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bomberosmunicipalestotonicapan@gmail.com'
+EMAIL_HOST_PASSWORD = 'vbktnespuvinqdwj'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

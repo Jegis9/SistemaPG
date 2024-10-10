@@ -10,7 +10,7 @@ from reportlab.platypus import Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
 from .models import Ambulancia
-
+from django.contrib import messages
 from .models import Servicio, Varios, Ambulancia, Incendios
 from django.contrib.staticfiles import finders
 
@@ -66,8 +66,15 @@ def servicio_create_view(request):
         
         
 def varios_list_view(request):
-    varios = Varios.objects.all()
-    return render(request, 'varios.html', {'varios': varios})
+    varios_list = Varios.objects.filter(servicio__activo=True)
+    # Get the choices for the service field
+    servicio_choices = Varios._meta.get_field('servicio').choices
+    
+    context = {
+        'varios': varios_list,
+        'servicio_choices': servicio_choices,
+    }
+    return render(request, 'varios.html', context)
 
 def ambulancia_list_view(request):
     ambulancias = Ambulancia.objects.all()
@@ -81,9 +88,46 @@ def servicio_list_view(request):
     servicios = Servicio.objects.all()
     return render(request, 'servicio_lista.html', {'servicios': servicios})
 
+# views.py
+
+
+def editar_desactivar_varios(request, pk):
+    varios = get_object_or_404(Varios, pk=pk)
+    servicio = varios.servicio  # Relación con Servicio
+
+    if request.method == 'POST':
+        accion = request.POST.get('accion')
+
+        if accion == 'editar':
+            servicio_form = ServicioForm(request.POST, instance=servicio)
+            varios_form = VariosForm(request.POST, instance=varios)
+
+            if servicio_form.is_valid() and varios_form.is_valid():
+                servicio_form.save()
+                varios_form.save()
+                messages.success(request, 'Servicio actualizado correctamente.')
+            else:
+                messages.error(request, 'Por favor corrige los errores en el formulario.')
+
+        elif accion == 'desactivar':
+            servicio.activo = False
+            servicio.save()
+            messages.success(request, 'Servicio desactivado correctamente.')
+
+        return redirect('varios')  # Reemplaza con el nombre correcto de tu URL
+
+    # Si el método no es POST, redirigir a la lista
+    return redirect('varios')
 
 
 
+
+
+
+
+
+
+# CODIGO PARA GENERAR REPORTES SEGUN SEA EL SERVICIO
 def generar_reporte_servicios_varios(request, varios_id):
     varios = get_object_or_404(Varios, id=varios_id)
     servicio = varios.servicio

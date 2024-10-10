@@ -1,31 +1,42 @@
-{% extends "baseG.html" %} {% load static %} {% block body %}
-<form method="post">
-  {% csrf_token %}
-  <fieldset>
-    <legend>Información del Servicio</legend>
-    {{ servicio_form.as_p }}
-  </fieldset>
+{% extends "baseG.html" %} {% load static %} {% load crispy_forms_tags %}
+{%block body %}
 
-  <!-- Formulario Varios -->
-  <fieldset id="varios-form" class="hidden-form">
-    <legend>Información Varios</legend>
-    {{ varios_form.as_p }}
-  </fieldset>
+<div class="row justify-content-center">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 form-container">
+      <h1 class="text-center">Crear servicio</h1>
+      <form method="post">
+        {% csrf_token %}
+        <fieldset>
+          <legend>Información del Servicio</legend>
+          {{ servicio_form|crispy }}
+        </fieldset>
 
-  <!-- Formulario Ambulancia -->
-  <fieldset id="ambulancia-form" class="hidden-form">
-    <legend>Información Ambulancia</legend>
-    {{ ambulancia_form.as_p }}
-  </fieldset>
+        <!-- Formulario Varios -->
+        <fieldset id="varios-form" class="hidden-form">
+          <legend>Información Varios</legend>
+          {{ varios_form|crispy }}
+        </fieldset>
 
-  <!-- Formulario Incendios -->
-  <fieldset id="incendios-form" class="hidden-form">
-    <legend>Información Incendios</legend>
-    {{ incendios_form.as_p }}
-  </fieldset>
+        <!-- Formulario Ambulancia -->
+        <fieldset id="ambulancia-form" class="hidden-form">
+          <legend>Información Ambulancia</legend>
+          {{ ambulancia_form|crispy }}
+        </fieldset>
 
-  <button type="submit">Guardar</button>
-</form>
+        <!-- Formulario Incendios -->
+        <fieldset id="incendios-form" class="hidden-form">
+          <legend>Información Incendios</legend>
+          {{ incendios_form|crispy }}
+        </fieldset>
+
+        <button type="submit" class="bg-success text-light w-100">
+          Guardar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <!-- Script JavaScript para manejar la visibilidad de los formularios adicionales -->
 <script>
