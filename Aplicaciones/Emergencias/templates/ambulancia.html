@@ -7,12 +7,10 @@
     <thead class="table-dark">
       <tr>
         <th class="header-cell w-5">Servicio:</th>
-
         <th class="header-cell w-5">Fecha y Hora:</th>
         <th class="header-cell w-5">Servicio de:</th>
         <th class="header-cell w-5">Jefe de Servicio</th>
         <th class="header-cell w-5">Autorizado Por:</th>
-
         <th class="header-cell w-5">Acciones</th>
       </tr>
     </thead>
@@ -20,7 +18,6 @@
       {% for ambulancias in ambulancias %}
       <tr>
         <td>{{ ambulancias.servicio.estacion }}</td>
-
         <td>{{ ambulancias.servicio.fecha_hora }}</td>
         <td>{{ ambulancias.servicio.servicio }}</td>
         <td>{{ ambulancias.servicio.piloto }}</td>
@@ -38,7 +35,7 @@
         </td>
       </tr>
 
-      <!-- Modal para cada servicio de Incendios -->
+      <!-- Modal para cada servicio de Ambulancia -->
       <div
         class="modal fade"
         id="modalAmbulancia{{ ambulancias.id }}"
@@ -51,9 +48,9 @@
             <div class="modal-header bg-warning">
               <h5
                 class="modal-title"
-                id="modalAmbulanciaLabel{{ ambulancias.id  }}"
+                id="modalAmbulanciaLabel{{ ambulancias.id }}"
               >
-                Detalles del Servicio de ambulancia
+                Detalles del Servicio de Ambulancia
               </h5>
               <button
                 type="button"
@@ -68,143 +65,204 @@
                 <div class="col-md-6">
                   <h6>Información General</h6>
                   <p>
-                    <strong>Estacion:</strong>
-                    <input type="" value="{{ambulancias.servicio.estacion}}" />
+                    <strong>Estación:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.estacion }}"
+                    />
                   </p>
                   <p>
                     <strong>Turno:</strong>
-                    <input type="" value="{{ambulancias.servicio.turno}}" />
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.turno }}"
+                    />
                   </p>
                   <p>
-                    <strong>Direccion:</strong>
-                    <input type="" value="{{ambulancias.servicio.direccion}}" />
+                    <strong>Dirección:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.direccion }}"
+                    />
                   </p>
                   <p>
                     <strong>Telefonista:</strong>
                     <input
-                      type=""
-                      value="{{ambulancias.servicio.telefonista}}"
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.telefonista }}"
                     />
                   </p>
                   <p>
-                    <strong>Bombero reporta:</strong>
+                    <strong>Bombero Reporta:</strong>
                     <input
-                      type=""
-                      value="{{ambulancias.servicio.bombero_reporta}}"
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.bombero_reporta }}"
                     />
                   </p>
-
                   <p>
                     <strong>Unidad:</strong>
-                    <input type="" value="{{ambulancias.servicio.unidad}}" />
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.unidad }}"
+                    />
                   </p>
                   <p>
                     <strong>Piloto:</strong>
-                    <input type="" value="{{ambulancias.servicio.piloto}}" />
-                  </p>
-                  <p>
-                    <strong>Hora salida:</strong>
                     <input
-                      type=""
-                      value="{{ambulancias.servicio.salida_hora}}"
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.piloto }}"
                     />
                   </p>
                   <p>
-                    <strong>Hora entrada:</strong>
+                    <strong>Hora Salida:</strong>
                     <input
-                      type=""
-                      value="{{ambulancias.servicio.entrada_hora}}"
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.salida_hora }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>Hora Entrada:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.entrada_hora }}"
                     />
                   </p>
                 </div>
-                <!-- Información Específica de Incendios -->
+                <!-- Información Específica de Ambulancia -->
                 <div class="col-md-6">
                   <p>
-                    <strong>Personal asistentes:</strong>
+                    <strong>Personal Asistentes:</strong>
                     <input
-                      type=""
-                      value="{{ambulancias.servicio.personal_asistente}}"
-                    />
-                  </p>
-
-                  <p>
-                    <strong>km de entrada:</strong>
-                    <input
-                      type=""
-                      value="{{ambulancias.servicio.km_entrada}}"
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.personal_asistente }}"
                     />
                   </p>
                   <p>
-                    <strong>km de salida:</strong>
-                    <input type="" value="{{ambulancias.servicio.km_salida}}" />
+                    <strong>KM de Entrada:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.km_entrada }}"
+                    />
                   </p>
                   <p>
-                    <strong>km recorridos:</strong>
+                    <strong>KM de Salida:</strong>
                     <input
-                      type=""
-                      value="{{ambulancias.servicio.km_recorridos}}"
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.km_salida }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>KM Recorridos:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.km_recorridos }}"
                     />
                   </p>
                   <p>
                     <strong>Servicio:</strong>
-                    <input type="" value="{{ambulancias.servicio.servicio}}" />
-                  </p>
-
-                  <h6>Detalles de Incendios</h6>
-                  <p>
-                    <strong>Servicio de:</strong>
-                    <input type="" value="{{ambulancias.codigo_emergencia}}" />
-                  </p>
-
-                  <p>
-                    <strong>Jefe de servicio:</strong
-                    ><input type="" value="{{ambulancias.nombre_paciente}}" />
-                  </p>
-                  <p>
-                    <strong>Servicio autorizado por:</strong>
-                    <input type="" value="{{ambulancias.direccion_paciente}}" />
-                  </p>
-
-                  <p>
-                    <strong>Fecha:</strong>
-
-                    <input type="" value="{{ambulancias.edad}}" />
-                  </p>
-                  <p>
-                    <strong>Fecha:</strong>
-
-                    <input type="" value="{{ambulancias.sexo}}" />
-                  </p>
-                  <p>
-                    <strong>Fecha:</strong>
-
-                    <input type="" value="{{ambulancias.traslado_a}}" />
-                  </p>
-                  <p>
-                    <strong>Fecha:</strong>
-
-                    <input type="" value="{{ambulancias.forma_aviso}}" />
-                  </p>
-                  <p>
-                    <strong>Fecha:</strong>
-
                     <input
-                      type=""
-                      value="{{ambulancias.hora_efectiva_servicio}}"
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.servicio.servicio }}"
+                    />
+                  </p>
+                  <h6>Detalles de Ambulancia</h6>
+                  <p>
+                    <strong>Código de Emergencia:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.codigo_emergencia }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>Nombre del Paciente:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.nombre_paciente }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>Dirección del Paciente:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.direccion_paciente }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>Edad:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.edad }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>Sexo:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.sexo }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>Traslado a:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.traslado_a }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>Forma de Aviso:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.forma_aviso }}"
+                    />
+                  </p>
+                  <p>
+                    <strong>Hora Efectiva del Servicio:</strong>
+                    <input
+                      type="text"
+                      readonly
+                      value="{{ ambulancias.hora_efectiva_servicio }}"
                     />
                   </p>
                 </div>
               </div>
               <p>
                 <strong class="w-100">Observaciones:</strong>
-
                 <input
                   type="text"
-                  value="{{ambulancias.servicio.observaciones}}"
+                  readonly
+                  value="{{ ambulancias.servicio.observaciones }}"
                 />
               </p>
             </div>
             <div class="modal-footer">
+              <!-- Botón para descargar el PDF -->
+              <a
+                href="{% url 'generar_reporte_ambulancia' ambulancias.id %}"
+                class="btn btn-success"
+              >
+                Descargar
+              </a>
               <button
                 type="button"
                 class="btn btn-danger"
